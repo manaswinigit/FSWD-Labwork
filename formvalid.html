@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formvalid</title>
+    <link rel="stylesheet" href="formvalidstyle.css">
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>Welcome To Registration Page</h1>
+        </div>
+        <center>
+            <form name="frm" action="success.html" onsubmit="return validate()">
+                <fieldset align="center">
+                    <table align="center">
+                        <tr>
+                            <td>First Name:</td>
+                            <td><input type="text" name="fname" value="" size="50" required placeholder="firstname"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td><input type="text" name="lname" value="" size="50" required placeholder="lastname"></td>
+                        </tr>
+                        <tr>
+                            <td>Phone No:</td>
+                            <td><input type="text" name="phone" value="" size="50" required placeholder="PhoneNo"></td>
+                        </tr>
+                        <tr>
+                            <td>Mail ID:</td>
+                            <td><input type="email" name="mailid" value="" size="50" required placeholder="mailid"></td>
+                        </tr>
+                        <tr>
+                            <td>Gender:</td>
+                            <td>Male:<input type="radio" class="gender" name="gender" value="Male" placeholder="Male"></td><td>Female:<input type="radio" class="gender" name="gender" value="Female" placeholder="Female"></td>
+                        </tr>
+                        <tr>
+                            <td>DOB:</td>
+                            <td><input type="date" name="dob" size="50" required placeholder="DOB"></td>
+                        </tr>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input type="text" name="usrname" value="" size="50" required placeholder="Username"></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input type="text" name="pswd" value="" size="50" required placeholder="Password"></td>
+                        </tr>
+                        <tr>
+                            <td>Age:</td>
+                            <td><input type="text" name="age" value="" size="50" required placeholder="age"</td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="submit" name="submit"> 
+                </fieldset>
+            </form>
+        </center>
+    </div>
+<script>
+    function validate(){
+        var fn=frm.fname.value;
+        for (x in fn){
+                ch=fn.charCodeAt(x);
+                if(ch<65 || ch>90 && ch<97 || ch>122 ){
+                    alert("Invalid firstname");
+                    return false;
+                }
+        }
+        var phn=frm.phone.value;
+        var lenp=phn.length;
+        if(lenp!=10){
+            alert("Phone Number should be exactly 10 digits");
+            return false;
+        }
+        var pswd1=frm.pswd.value;
+        var pswd1=pswd1.length;
+        if(pswd1>8){
+            alert("Password should not exceed 8 digits")
+            return false;
+        }
+        var reg=/^([a-zA-Z][a-zA-Z 0-9\.-]+)@([A-Za-z-]+)([a-z]{2,8})(.[a-z]{2,8})?$/;
+        var mail=frm.mailid.value;
+        if(reg.test(mail)){
+                   alert("Valid email")
+        }
+        else{
+            alert("Invalid email")
+            return false;
+        }
+        return true;
+    }
+
+</script>
+</body>
+</html>
